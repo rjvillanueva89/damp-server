@@ -11,3 +11,32 @@ services:
     volumes:
       - ./local/www:/var/www/html/
       - ./conf/apache.conf:/etc/apache2/sites-available/000-default.conf
+
+  mysql:
+    image: mariadb:10.5.8
+    container_name: 'custom_mysql'
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./local/mysql:/var/lib/mysql
+      - ./local/logs/mysql:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: custom_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: 'custom_phpmyadmin'
+    restart: always
+    links:
+      - mysql
+    environment:
+      PMA_HOST: custom_mysql
+      PMA_PORT: 3306
+    ports:
+      - 81:80
+    volumes:
+      - ./local/sessions:/sessions
