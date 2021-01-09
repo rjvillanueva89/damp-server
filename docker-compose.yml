@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  php:
+    image: php-apache:latest
+    container_name: custom
+    hostname: custom
+    domainname: custom.doc
+    ports:
+      - 80:80
+    volumes:
+      - ./local/www:/var/www/html/
+      - ./conf/apache.conf:/etc/apache2/sites-available/000-default.conf
