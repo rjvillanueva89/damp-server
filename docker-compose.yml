@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   php:
-    image: php-apache:latest
+    image: amp:latest
     container_name: custom
     hostname: custom
     domainname: custom.doc
@@ -34,8 +34,10 @@ services:
     links:
       - mysql
     environment:
-      PMA_HOST: custom_mysql
+      PMA_HOST: mysql
       PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
     ports:
       - 81:80
     volumes:

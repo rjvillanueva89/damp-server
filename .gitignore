@@ -52,3 +52,5 @@ Thumbs.db
 /local/mysql
 /local/logs
 /local/sessions
+/local/www
+/local/www/.env
