@@ -6,9 +6,6 @@ FROM php:7.4-apache
 # Enable htaccess
 RUN a2enmod rewrite
 
-# commands
-
-# fix for "Fatal error: Uncaught Error: Call to undefined function CodeIgniter\locale_set_default()"
 # install required extensions
 RUN apt-get update
 RUN apt-get upgrade -y
