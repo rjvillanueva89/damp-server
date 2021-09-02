@@ -3,18 +3,19 @@ version: '3.8'
 services:
   php:
     image: amp:latest
-    container_name: custom
-    hostname: custom
-    domainname: custom.doc
+    container_name: damp-server
+    hostname: damp
+    domainname: damp.doc
     ports:
-      - 80:80
+      - 8080:80
+      - 465:465
     volumes:
       - ./local/www:/var/www/html/
       - ./conf/apache.conf:/etc/apache2/sites-available/000-default.conf
 
   mysql:
     image: mariadb:10.5.8
-    container_name: 'custom_mysql'
+    container_name: 'damp_mysql'
     restart: always
     ports:
       - 3306:3306
@@ -22,23 +23,23 @@ services:
       - ./local/mysql:/var/lib/mysql
       - ./local/logs/mysql:/var/log/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: custom_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: 'custom_phpmyadmin'
+    container_name: 'damp_phpmyadmin'
     restart: always
     links:
       - mysql
     environment:
-      PMA_HOST: mysql
-      PMA_PORT: 3306
-      PMA_USER: root
-      PMA_PASSWORD: root
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - PMA_USER=root
+      - PMA_PASSWORD=root
     ports:
-      - 81:80
+      - 8081:80
     volumes:
       - ./local/sessions:/sessions

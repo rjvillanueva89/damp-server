@@ -1,3 +1,5 @@
 <?php
-    // codes directory
+    echo 'welcome to damp server';
+
+    echo session_status();
 ?>
