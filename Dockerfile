@@ -1,7 +1,7 @@
 # image name: amp
 
 # Use the official image as a parent image.
-FROM php:7.4-apache
+FROM php:8.1.12-apache
 
 # Enable htaccess
 RUN a2enmod rewrite
