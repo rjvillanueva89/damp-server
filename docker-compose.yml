@@ -14,7 +14,7 @@ services:
       - ./conf/apache.conf:/etc/apache2/sites-available/000-default.conf
 
   mysql:
-    image: mariadb:10.5.8
+    image: mysql:8.0.31
     container_name: "damp_mysql"
     restart: always
     ports:
@@ -23,10 +23,7 @@ services:
       - ./local/mysql:/var/lib/mysql
       - ./local/logs/mysql:/var/log/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=mysql
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
+      MYSQL_ROOT_PASSWORD: root
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -35,10 +32,8 @@ services:
     links:
       - mysql
     environment:
-      - PMA_HOST=mysql
-      - PMA_PORT=3306
-      - PMA_USER=root
-      - PMA_PASSWORD=root
+      PMA_HOST: mysql
+      PMA_PORT: 3306
     ports:
       - 8081:80
     volumes:
