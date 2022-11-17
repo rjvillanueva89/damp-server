@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   php:
@@ -15,7 +15,7 @@ services:
 
   mysql:
     image: mariadb:10.5.8
-    container_name: 'damp_mysql'
+    container_name: "damp_mysql"
     restart: always
     ports:
       - 3306:3306
@@ -30,7 +30,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: 'damp_phpmyadmin'
+    container_name: "damp_phpmyadmin"
     restart: always
     links:
       - mysql
