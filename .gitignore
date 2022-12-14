@@ -49,8 +49,11 @@ Thumbs.db
 *.wmv
 
 # custom
+/local/mysql-*
 /local/mysql
 /local/logs
 /local/sessions
 /local/www
 /local/www/.env
+
+/conf/apache.conf
